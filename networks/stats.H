@@ -14,6 +14,7 @@
 #include <utils/progress.H>
 #include <utils/stl.H>
 
+#include "../utils/portable.H"
 #include "adj_list.H"
 
 namespace net 
