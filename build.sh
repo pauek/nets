@@ -11,23 +11,18 @@ fi
 
 if ! [ -r /usr/include/random/uniform.h ]; then
    echo "You have to install Blitz++!" 
-   echo 'In Ubuntu/Debian, type "aptitude install blitz++"'
+   echo 'In Ubuntu, type "apt-get install libblitz0-dev"'
    exit 1
 fi
 
-echo -e "Compiling programs...\n"
-make -C graphics
-make -C networks
+echo "Compiling programs..."
+make -k -C graphics
+make -k -C networks
+echo "Done."
 
-files=$(find ! -type d ! -name "*.sh" -perm '/u+x')
-mkdir bin
-for f in $files; do
-  cp $f bin/.
-done
-echo
+[ -d bin ] || mkdir bin
+cp -f networks/G* bin/.
+
 echo "+----------------------------------------------------------+"
-echo "|                                                          |"
 echo '|   You will find the executables in the "bin" directory   |'
-echo "|                                                          |"
 echo "+----------------------------------------------------------+"
-echo
