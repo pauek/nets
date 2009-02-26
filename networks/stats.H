@@ -138,19 +138,34 @@ namespace net
   double clustering_coeff(const Network& g,uint i)
   {
     assert(g.is_undirected());
-    if (g.degree(i) < 2) return 0.0;
-    const uint degr=g.degree(i);
-    typename Network::edge_const_iterator ni=g.nbrs_const_iterate(i);
+
+    vector<uint> nb;
+    typename Network::edge_const_iterator ni = g.nbrs_const_iterate(i);
+    for ( ; !ni.end(); ++ni)
+      if (ni.index() != i) nb.push_back(ni.index());
+
     uint acum=0;
-    for(;!ni.end();++ni) {
-      if (ni.index() != i) {
-	typename Network::edge_const_iterator ei=g.nbrs_const_iterate(ni.index());
-	for (;!ei.end();++ei) 
-	  if (g.connected(i,ei.index())) ++acum;
+    const uint nbsz = nb.size();
+    for (uint i = 0; i < nbsz; i++) {
+      for (uint j = 0; j < nbsz; j++) {
+	if (i != j && g.connected(nb[i], nb[j])) acum++;
       }
     }
-    return double(acum)/double(degr*(degr-1));
+
+    return double(acum) / double(nbsz * (nbsz - 1));
   }
+
+//     if (g.degree(i) < 2) return 0.0;
+//     const uint degr = g.degree(i) - (g.has_auto_loop(i) ? 1 : 0);
+//     typename Network::edge_const_iterator ni=g.nbrs_const_iterate(i);
+//     for(;!ni.end();++ni) {
+//       if (ni.index() != i) {
+// 	typename Network::edge_const_iterator ei=g.nbrs_const_iterate(ni.index());
+// 	for (;!ei.end();++ei) 
+// 	  if (g.connected(i,ei.index())) ++acum;
+//       }
+//     }
+//     return double(acum)/double(degr*(degr-1));
 
   template<class Network>
   double avg_clustering_coeff(const Network& g)

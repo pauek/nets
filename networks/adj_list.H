@@ -122,6 +122,12 @@ namespace net
       return (s.empty());
     }
 
+    bool has_auto_loop(uint k) const {
+      assert(bounds_ok(k));
+      typename std::map<uint,EdgeTag>::const_iterator i = _adj[k].find(k);
+      return i != _adj[k].end();
+    }
+
     void index_from_tag(const NodeTag& nt,std::set<uint>& idxs) const
     {
       typename std::vector<node>::const_iterator ni=_nod.begin(),niend=_nod.end();

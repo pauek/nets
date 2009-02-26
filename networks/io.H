@@ -298,7 +298,7 @@ namespace net
     // nodes
     o << "*Vertices\t" << g.num_nodes() << endl;
     for (uint k=0;k<N;k++) {
-      o << "  " << k << " \"" << g.tag(k) << "\"" << endl;
+      o << "  " << k+1 << " \"" << g.tag(k) << "\"" << endl;
     }
     
     // edges
@@ -306,7 +306,7 @@ namespace net
     for (uint k=0;k<N;k++) {
       typename Network::edge_const_iterator ei=g.nbrs_const_iterate(k);
       for (;!ei.end();++ei) {
-	o << "  " << k << " " << ei.index() << " 1" << endl;
+	o << "  " << k+1 << " " << ei.index()+1 << " 1" << endl;
       }
     }    
   }

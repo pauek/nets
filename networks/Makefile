@@ -2,7 +2,7 @@
 #  Copyright (c) 2007, Pau Fernández
 #
 
-CXXFLAGS+=-Wall -I.. -O2 -DNDEBUG
+CXXFLAGS+=-Wall -I.. -O2 # -DNDEBUG
 LDFLAGS=-lstdc++ 
 
 NOGRAPHICS=Gconvert Gstats Gdstats Gpnstats Gmanip \
