@@ -1,0 +1,6 @@
+To be able to install this software you will need:
+ - A GNU C++ compiler (> 3.0) + Standard Library (STL).
+ - Blitz++ development files.
+
+Run the build.sh script to build the binaries, at the end
+of the process you will find them in the "bin" subdirectory.
