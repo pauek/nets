@@ -9,11 +9,11 @@ if [ -z /usr/bin/g++ ]; then
    exit 1
 fi
 
-if ! [ -r /usr/include/random/uniform.h ]; then
-   echo "You have to install Blitz++!" 
-   echo 'In Ubuntu, type "apt-get install libblitz0-dev"'
-   exit 1
-fi
+# if ! [ -r /usr/include/random/uniform.h ]; then
+#    echo "You have to install Blitz++!" 
+#    echo 'In Ubuntu, type "apt-get install libblitz0-dev"'
+#    exit 1
+# fi
 
 echo "Compiling programs..."
 make -k -C graphics
